@@ -5,7 +5,6 @@ import Progress from '../Progress/Progress';
 import RatingCard from '../RatingCard/RatingCard';
 import CommentCard from '../CommentCard/CommentCard';
 import SummarySubmit from '../SummarySubmit/SummarySubmit';
-import axios from 'axios';
 
 import 'typeface-roboto';
 import './App.css';

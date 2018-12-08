@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import './SummarySubmit.css';
+import axios from 'axios';
 
 class SummarySubmit extends Component {
     allInputsEntered() {
@@ -13,6 +14,16 @@ class SummarySubmit extends Component {
             && data.comments !== undefined
         );
     }
+    handleClick = () => {
+        console.log('clicked');
+        axios.post('/fb', this.props.state.feedbackSubmission)
+            .then( (response) => {
+                console.log('POST success');
+            }).catch( (err) => {
+                console.log('POST error:', err);
+            }
+        );
+    }
     render() {
         const data = this.props.state.feedbackSubmission;
         console.log('data:', data);
@@ -21,6 +32,7 @@ class SummarySubmit extends Component {
             <div>
                 <Button
                     variant='outlined'
+                    onClick={this.handleClick}
                     style={{
                         margin: 'auto',
                         marginBottom: '20px',
