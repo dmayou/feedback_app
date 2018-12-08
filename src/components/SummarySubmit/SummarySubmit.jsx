@@ -19,6 +19,7 @@ class SummarySubmit extends Component {
         axios.post('/fb', this.props.state.feedbackSubmission)
             .then( (response) => {
                 console.log('POST success');
+                this.props.dispatch({type: 'RESET_INPUT'});
             }).catch( (err) => {
                 console.log('POST error:', err);
             }

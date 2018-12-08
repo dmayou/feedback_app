@@ -3,6 +3,8 @@ const feedbackSubmission = (state = {}, action) => {
         case 'NEW_INPUT':
             console.log('payload:', action.payload);
             return ({...state, [action.payload.key]: action.payload.value});
+        case 'RESET_INPUT':
+            return {};
         default:
             return state;
     }
