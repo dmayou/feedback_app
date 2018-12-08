@@ -7,14 +7,15 @@ class SummarySubmit extends Component {
         return(
             <div>
                 <h3>Your Feedback is:</h3>
-                <p>First question: 2</p>
-                <p>Second question: 3</p>
-                <p>Third question: 2</p>
-                <p>Last question: Everything's wonderful!</p>
+                <p>Feelings: 2</p>
+                <p>Understanding: 3</p>
+                <p>Support: 2</p>
+                <p>Comments: Everything's wonderful!</p>
                 <Button
                     variant='outlined'
                     style={{ margin: 'auto',
-                        marginBottom: '40px', 
+                        marginBottom: '40px',
+                        marginTop: '20px', 
                         fontSize: 16, 
                         color: 'gray' }} 
                         size="large" 

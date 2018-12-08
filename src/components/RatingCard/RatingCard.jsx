@@ -42,7 +42,17 @@ function RatingCard(props) {
                 </div>
             </CardContent>
             <CardActions>
-                <Button variant="outlined" style={ {margin: 'auto', marginBottom: '40px', fontSize: 16, color: 'gray' } } size="large">Next</Button>
+                <Button
+                    variant="outlined"
+                    style={ {
+                        margin: 'auto',
+                        marginBottom: '40px',
+                        fontSize: 16,
+                        color: 'dimgray'
+                        } }
+                    size="large"
+                    >Next
+                </Button>
             </CardActions>
         </Card>
     );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import Progress from '../Progress/Progress';
 import RatingCard from '../RatingCard/RatingCard';
+import CommentCard from '../CommentCard/CommentCard';
 import SummarySubmit from '../SummarySubmit/SummarySubmit';
 import axios from 'axios';
 
@@ -21,6 +22,7 @@ class App extends Component {
           <Progress />
           <Route path="/test" exact component={RatingCard} />
           <RatingCard />
+          <CommentCard />
           <SummarySubmit />
         </div>
       </Router>
