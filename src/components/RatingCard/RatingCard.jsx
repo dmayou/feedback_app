@@ -30,8 +30,7 @@ const styles = {
 class RatingCard extends Component {
     handleClick = () => {
         const input = this.props.store.ratingInput;
-        console.log('input:', input);
-        if (input !== 0) {
+        if (input > 0) {
             this.props.dispatch({ 
                 type: 'NEW_INPUT', 
                 payload: {
@@ -39,15 +38,15 @@ class RatingCard extends Component {
                     value: input
                 }
             });
-            this.props.dispatch({ type: 'NEXT_PAGE' });
-            this.props.history.push(this.props.text.nextPage);
-        } else {
-            alert('Please make a selection first.');
         }
+        this.props.dispatch({ type: 'NEXT_PAGE' });
+        this.props.history.push(this.props.text.nextPage);
+    }
+    componentDidMount() {
+        this.props.dispatch({ type: 'RATING_RESET' });
     }
     render() {
         const { classes } = this.props;
-        console.log('RatingCard props', this.props)
         return (
         <Card className={classes.card}>
             <CardContent>

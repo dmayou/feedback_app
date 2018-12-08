@@ -33,7 +33,16 @@ class RatingCard extends Component {
         this.setState({comment: event.target.value});
     };
     handleClick = () => {
-        this.props.dispatch({ type: 'COMMENT_CHANGE', payload: this.state.comment });
+        if (this.state.comment !== '') {
+            this.props.dispatch({
+                type: 'NEW_INPUT',
+                payload: {
+                    key: 'comments',
+                    value: this.state.comment
+                }
+            });
+        }
+        // this.props.dispatch({ type: 'COMMENT_CHANGE', payload: this.state.comment });
         this.setState( { comment: ''});
         this.props.dispatch({type: 'NEXT_PAGE'});
         this.props.history.push('/'); // back to first page

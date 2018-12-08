@@ -4,8 +4,19 @@ import { Button } from '@material-ui/core';
 import './SummarySubmit.css';
 
 class SummarySubmit extends Component {
+    allInputsEntered() {
+        const data = this.props.state.feedbackSubmission;
+        return (data.feeling > 0
+            && data.understanding > 0
+            && data.support > 0
+            && data.comments !== '' 
+            && data.comments !== undefined
+        );
+    }
     render() {
         const data = this.props.state.feedbackSubmission;
+        console.log('data:', data);
+        console.log('all inputs entered', this.allInputsEntered());
         return(
             <div>
                 <Button
@@ -18,14 +29,14 @@ class SummarySubmit extends Component {
                         color: 'gray'
                     }}
                     size="large"
-                    disabled
-                >Incomplete
+                    disabled={!this.allInputsEntered()}
+                >Submit
                 </Button>
                 <h3>Your Feedback is:</h3>
                 <p>Feelings: {data.feeling}</p>
                 <p>Understanding: {data.understanding}</p>
                 <p>Support: {data.support}</p>
-                <p>Comments: Everything's wonderful!</p>
+                <p>Comments: {data.comments}</p>
             </div>
         );
     }
