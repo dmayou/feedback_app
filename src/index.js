@@ -8,13 +8,15 @@ import App from './components/App/App';
 import commentInput from './reducers/commentReducer';
 import ratingInput from './reducers/ratingReducer';
 import currentPage from './reducers/currentPageReducer';
+import feedbackSubmission from './reducers/feedbackSubmissionReducer';
 import registerServiceWorker from './registerServiceWorker';
 
 const storeInstance = createStore(
     combineReducers({
         commentInput,
         ratingInput,
-        currentPage
+        currentPage,
+        feedbackSubmission
     }),
     applyMiddleware(logger)
 );

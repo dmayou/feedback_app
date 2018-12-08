@@ -17,19 +17,22 @@ class App extends Component {
         question: 'How are you feeling today?',
         lowRange: 'I\'m very stressed.',
         highRange: 'I\'m feeling great!',
-        nextPage: '/p2'
+        nextPage: '/p2',
+        dataKey: 'feeling'
       },
       p2: {
         question: 'How well do you understand today\'s material?',
         lowRange: 'I\'m totally lost.',
         highRange: 'I\'ve got this!',
-        nextPage: '/p3'
+        nextPage: '/p3',
+        dataKey: 'understanding'
       },
       p3: {
         question: 'Did you feel supported by Prime staff today?',
         lowRange: 'I feel abandoned.',
         highRange: 'I feel supported!',
-        nextPage: '/comment'
+        nextPage: '/comment',
+        dataKey: 'support'
       }
     }
     return (

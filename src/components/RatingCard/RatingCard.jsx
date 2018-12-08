@@ -27,12 +27,23 @@ const styles = {
     },
 };
 
-// function RatingCard(props) {
 class RatingCard extends Component {
     handleClick = () => {
-        // console.log('clicked, this.props.text:', this.props.text);
-        this.props.dispatch({ type: 'NEXT_PAGE'});
-        this.props.history.push(this.props.text.nextPage);
+        const input = this.props.store.ratingInput;
+        console.log('input:', input);
+        if (input !== 0) {
+            this.props.dispatch({ 
+                type: 'NEW_INPUT', 
+                payload: {
+                    key: this.props.text.dataKey, 
+                    value: input
+                }
+            });
+            this.props.dispatch({ type: 'NEXT_PAGE' });
+            this.props.history.push(this.props.text.nextPage);
+        } else {
+            alert('Please make a selection first.');
+        }
     }
     render() {
         const { classes } = this.props;
@@ -71,4 +82,8 @@ RatingCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect()(withStyles(styles)(RatingCard));
+const mapStoreToProps = (store) => {
+    return {store};
+}
+
+export default connect(mapStoreToProps)(withStyles(styles)(RatingCard));
