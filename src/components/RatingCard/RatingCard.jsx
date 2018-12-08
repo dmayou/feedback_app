@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -26,24 +26,30 @@ const styles = {
     },
 };
 
-function RatingCard(props) {
-    const { classes } = props;
-
-    return (
+// function RatingCard(props) {
+class RatingCard extends Component {
+    handleClick = () => {
+        console.log('clicked, this.props.text:', this.props.text);
+        this.props.history.push(this.props.text.nextPage);
+    }
+    render() {
+        const { classes } = this.props;
+        console.log('RatingCard props', this.props)
+        return (
         <Card className={classes.card}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    How Are You Feeling Today?
+                    {this.props.text.question}
                 </Typography>
                 <div>
-                    <p className="pInline">Text to left</p>
+                    <p className="pInline">{this.props.text.lowRange}</p>
                     <RadioRating />
-                    <p className="pInline">Text to right</p>
+                    <p className="pInline">{this.props.text.highRange}</p>
                 </div>
             </CardContent>
             <CardActions>
                 <Button
-                    onClick={()=>console.log('clicked')}
+                    onClick={this.handleClick}
                     variant="outlined"
                     style={ {
                         margin: 'auto',
@@ -56,7 +62,7 @@ function RatingCard(props) {
                 </Button>
             </CardActions>
         </Card>
-    );
+    );}
 }
 
 RatingCard.propTypes = {

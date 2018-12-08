@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import './CommentCard.css';
-import commentInput from '../../reducers/commentReducer';
 
 const styles = {
     card: {
@@ -36,6 +35,7 @@ class RatingCard extends Component {
     handleClick = () => {
         this.props.dispatch({ type: 'COMMENT_CHANGE', payload: this.state.comment });
         this.setState( { comment: ''});
+        this.props.history.push('/'); // back to first page
     }
     render() {
         return (
