@@ -43,6 +43,7 @@ function RatingCard(props) {
             </CardContent>
             <CardActions>
                 <Button
+                    onClick={()=>console.log('clicked')}
                     variant="outlined"
                     style={ {
                         margin: 'auto',

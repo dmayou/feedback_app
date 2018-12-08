@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
@@ -22,6 +23,7 @@ class RadioRating extends Component {
     };
     handleChange = event => {
         this.setState({ selectedValue: event.target.value });
+        this.props.dispatch({ type: 'RATING_CHANGE', payload: event.target.value });
     };
     render() {
         const { classes } = this.props;
@@ -77,4 +79,4 @@ RadioRating.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RadioRating);
+export default connect()(withStyles(styles)(RadioRating));
