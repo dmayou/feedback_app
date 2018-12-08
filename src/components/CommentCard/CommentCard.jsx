@@ -35,6 +35,7 @@ class RatingCard extends Component {
     handleClick = () => {
         this.props.dispatch({ type: 'COMMENT_CHANGE', payload: this.state.comment });
         this.setState( { comment: ''});
+        this.props.dispatch({type: 'NEXT_PAGE'});
         this.props.history.push('/'); // back to first page
     }
     render() {

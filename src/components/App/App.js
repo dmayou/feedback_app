@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import Progress from '../Progress/Progress';
 import RatingCard from '../RatingCard/RatingCard';
 import CommentCard from '../CommentCard/CommentCard';
@@ -39,7 +40,7 @@ class App extends Component {
             <h4><i>Don't forget it!</i></h4>
           </header>
           <br/>
-          <Progress />
+          <Progress step={this.props.store.currentPage}/>
           <Route path="/" exact render={(props)=><RatingCard {...props} text={formText.p1}/>} />
           <Route path="/p2" render={(props)=><RatingCard {...props} text={formText.p2}/>} />
           <Route path="/p3" render={(props) => <RatingCard {...props} text={formText.p3} />} />
@@ -52,4 +53,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (store) => {
+  return {store}
+};
+
+export default connect(mapStateToProps)(App);

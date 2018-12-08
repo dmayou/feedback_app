@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -29,7 +30,8 @@ const styles = {
 // function RatingCard(props) {
 class RatingCard extends Component {
     handleClick = () => {
-        console.log('clicked, this.props.text:', this.props.text);
+        // console.log('clicked, this.props.text:', this.props.text);
+        this.props.dispatch({ type: 'NEXT_PAGE'});
         this.props.history.push(this.props.text.nextPage);
     }
     render() {
@@ -69,4 +71,4 @@ RatingCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RatingCard);
+export default connect()(withStyles(styles)(RatingCard));
