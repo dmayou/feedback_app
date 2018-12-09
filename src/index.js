@@ -9,6 +9,7 @@ import commentInput from './reducers/commentReducer';
 import ratingInput from './reducers/ratingReducer';
 import currentPage from './reducers/currentPageReducer';
 import feedbackSubmission from './reducers/feedbackSubmissionReducer';
+import feedbackList from './reducers/feedbackListReducer';
 import registerServiceWorker from './registerServiceWorker';
 
 const storeInstance = createStore(
@@ -16,7 +17,8 @@ const storeInstance = createStore(
         commentInput,
         ratingInput,
         currentPage,
-        feedbackSubmission
+        feedbackSubmission,
+        feedbackList
     }),
     applyMiddleware(logger)
 );

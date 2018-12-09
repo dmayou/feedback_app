@@ -10,6 +10,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
+app.get('/fb', (req, res) => {
+    const query = 'SELECT * FROM "feedback" ORDER BY "date" DESC;';
+    pool.query(query)
+        .then((results) => {
+            res.send(results.rows);
+        }).catch((err) => {
+            console.log('GET error:', err);
+            res.sendStatus(500);
+        });
+});
 app.post('/fb', (req, res) => {
     const query = 'INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")'
         + 'VALUES ($1, $2, $3, $4);';
