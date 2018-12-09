@@ -43,14 +43,14 @@ class SummarySubmit extends Component {
                     >You've answered all the questions! Click Submit to save.
                 </h5>}
                 <Button
-                    variant='outlined'
+                    variant='contained'
                     onClick={this.handleClick}
+                    color='primary'
                     style={{
                         margin: 'auto',
                         marginBottom: '20px',
                         marginTop: '40px',
                         fontSize: 16,
-                        color: 'gray'
                     }}
                     size="large"
                     disabled={!this.allInputsEntered()}
