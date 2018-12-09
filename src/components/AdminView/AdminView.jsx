@@ -41,10 +41,16 @@ class AdminView extends Component {
         );
     }
     render() {
+        console.log(this.props.store.feedbackList);
         const rows = this.props.store.feedbackList.map( (fb) => {
             return (
                 <tr key={fb.id}>
-                    <td><input onChange={()=>this.handleCheckChange(fb.id, fb.flagged)} type="checkbox" /></td>
+                    <td><input 
+                            type="checkbox"
+                            checked={fb.flagged}
+                            onChange={()=>this.handleCheckChange(fb.id, fb.flagged)} 
+                        />
+                    </td>
                     <td>{fb.feeling}</td>
                     <td>{fb.understanding}</td>
                     <td>{fb.support}</td>
@@ -52,7 +58,7 @@ class AdminView extends Component {
                     <td><Delete onClick={()=>this.handleDeleteClick(fb.id)}/></td>
                 </tr>
             );
-        })
+        });
         return (
             <div>
                 <table className="table table-striped">
