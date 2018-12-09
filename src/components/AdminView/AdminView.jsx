@@ -5,6 +5,9 @@ import Axios from 'axios';
 
 class AdminView extends Component {
     componentDidMount() {
+        this.getFeedback();
+    }
+    getFeedback() {
         Axios.get('/fb')
             .then((response) => {
                 console.log('GET success');
@@ -14,16 +17,39 @@ class AdminView extends Component {
             }
         );
     }
+    handleCheckChange = (id, flagged) => {
+        console.log('checkbox:', id, flagged);
+        const newFlag = (flagged === false) ? 'TRUE' : 'FALSE';
+        Axios.put(`/fb/flag/${id}`, {flagged: newFlag})
+            .then((response) => {
+                console.log('PUT success');
+                this.getFeedback();
+            }).catch((err) => {
+                console.log('PUT error:', err);
+            }
+        );
+    }
+    handleDeleteClick = (id) => {
+        console.log('delete:', id);
+        Axios.delete(`/fb/${id}`)
+            .then((response) => {
+                console.log('DELETE success');
+                this.getFeedback();
+            }).catch((err) => {
+                console.log('DELETE error:', err);
+            }
+        );
+    }
     render() {
-        const rows = this.props.store.feedbackList.map( (fb, i) => {
+        const rows = this.props.store.feedbackList.map( (fb) => {
             return (
-                <tr key={i}>
-                    <td><input type="checkbox" /></td>
+                <tr key={fb.id}>
+                    <td><input onChange={()=>this.handleCheckChange(fb.id, fb.flagged)} type="checkbox" /></td>
                     <td>{fb.feeling}</td>
                     <td>{fb.understanding}</td>
                     <td>{fb.support}</td>
                     <td>{fb.comments}</td>
-                    <td><Delete /></td>
+                    <td><Delete onClick={()=>this.handleDeleteClick(fb.id)}/></td>
                 </tr>
             );
         })

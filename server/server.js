@@ -11,7 +11,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.get('/fb', (req, res) => {
-    const query = 'SELECT * FROM "feedback" ORDER BY "date" DESC;';
+    const query = 'SELECT * FROM "feedback" ORDER BY "id" DESC;';
     pool.query(query)
         .then((results) => {
             res.send(results.rows);
@@ -31,6 +31,19 @@ app.post('/fb', (req, res) => {
             console.log('POST error:', err);
             res.sendStatus(500);
         });
+});
+app.put('/fb/flag/:id', (req, res) => {
+    const id = req.params.id;
+    console.log('PUT body:', req.body.flagged, 'id:', id);
+    const query = 'UPDATE "feedback" SET "flagged" = $1 WHERE "id" = $2';
+    pool.query(query, [req.body.flagged, id])
+        .then( (results) => {
+            console.log('PUT success');
+            res.sendStatus(200);
+        }).catch( (err) => {
+            console.log('PUT error:', err);
+            res.sendStatus(500);
+        })
 });
 
 /** ---------- START SERVER ---------- **/
