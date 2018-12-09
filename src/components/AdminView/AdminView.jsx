@@ -18,7 +18,6 @@ class AdminView extends Component {
         );
     }
     handleCheckChange = (id, flagged) => {
-        console.log('checkbox:', id, flagged);
         const newFlag = (flagged === false) ? 'TRUE' : 'FALSE';
         Axios.put(`/fb/flag/${id}`, {flagged: newFlag})
             .then((response) => {
@@ -30,7 +29,6 @@ class AdminView extends Component {
         );
     }
     handleDeleteClick = (id) => {
-        console.log('delete:', id);
         Axios.delete(`/fb/${id}`)
             .then((response) => {
                 console.log('DELETE success');
@@ -41,7 +39,6 @@ class AdminView extends Component {
         );
     }
     render() {
-        console.log(this.props.store.feedbackList);
         const rows = this.props.store.feedbackList.map( (fb) => {
             return (
                 <tr key={fb.id}>

@@ -1,3 +1,4 @@
+// Holds list of feedback retrieved from database
 const feedbackList = (state = [], action) => {
     switch (action.type) {
         case 'STORE_FB_LIST':

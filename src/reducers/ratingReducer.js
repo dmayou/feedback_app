@@ -1,3 +1,4 @@
+// Holds value of radio button input before
 const ratingInput = (state=0, action) => {
     switch (action.type) {
         case 'RATING_CHANGE':

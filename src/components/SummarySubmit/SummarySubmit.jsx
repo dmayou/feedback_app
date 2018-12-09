@@ -7,7 +7,7 @@ import axios from 'axios';
 
 class SummarySubmit extends Component {
     state = {
-        showSaveConf: false
+        showSaveConf: false // visible state of sweetalert
     }
     allInputsEntered() {
         const data = this.props.state.feedbackSubmission;
@@ -35,8 +35,6 @@ class SummarySubmit extends Component {
     }
     render() {
         const data = this.props.state.feedbackSubmission;
-        console.log('data:', data);
-        console.log('all inputs entered', this.allInputsEntered());
         return(
             <div>
                 {this.allInputsEntered() && <h5 className="Notification"

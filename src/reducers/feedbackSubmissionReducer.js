@@ -1,3 +1,4 @@
+// Holds form data before database POST
 const feedbackSubmission = (state = {}, action) => {
     switch (action.type) {
         case 'NEW_INPUT':

@@ -33,6 +33,7 @@ class RatingCard extends Component {
         this.setState({ comment: event.target.value });
     };
     handleClick = () => {
+        // Save comment in reducer
         this.props.dispatch({
             type: 'NEW_INPUT',
             payload: {
@@ -40,11 +41,15 @@ class RatingCard extends Component {
                 value: this.state.comment
             }
         });
+        // Clear client input
         this.setState({ comment: '' });
+        // Update reducer used for progress bar
         this.props.dispatch({ type: 'NEXT_PAGE' });
-        this.props.history.push('/'); // back to first page
+        // Route back to first page
+        this.props.history.push('/');
     }
     componentDidMount() {
+        // display current comment in textarea
         this.setState({ comment: this.props.store.feedbackSubmission.comments });
     }
     render() {
