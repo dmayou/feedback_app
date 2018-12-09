@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import './SummarySubmit.css';
+import SwAlert from '../SweetAlert/SweetAlert';
 import axios from 'axios';
 
 class SummarySubmit extends Component {
+    state = {
+        showSaveConf: false
+    }
     allInputsEntered() {
         const data = this.props.state.feedbackSubmission;
         return (data.feeling > 0
@@ -19,11 +23,15 @@ class SummarySubmit extends Component {
         axios.post('/fb', this.props.state.feedbackSubmission)
             .then( (response) => {
                 console.log('POST success');
+                this.setState({ showSaveConf: true});
                 this.props.dispatch({type: 'RESET_INPUT'});
             }).catch( (err) => {
                 console.log('POST error:', err);
             }
         );
+    }
+    hideSaveConf = () => {
+        this.setState({ showSaveConf: false });
     }
     render() {
         const data = this.props.state.feedbackSubmission;
@@ -53,6 +61,10 @@ class SummarySubmit extends Component {
                 <p>Understanding: {data.understanding}</p>
                 <p>Support: {data.support}</p>
                 <p>Comments: {data.comments}</p>
+                <SwAlert 
+                    show={this.state.showSaveConf}
+                    hideSaveConf={this.hideSaveConf}
+                />
             </div>
         );
     }

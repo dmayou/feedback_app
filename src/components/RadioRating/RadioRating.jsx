@@ -26,7 +26,6 @@ class RadioRating extends Component {
         this.props.dispatch({ type: 'RATING_CHANGE', payload: event.target.value });
     };
     render() {
-        const { classes } = this.props;
         return (
             <div style={ { display: 'inline' } }>
                 <Radio
@@ -35,6 +34,7 @@ class RadioRating extends Component {
                     value="1"
                     name="radio-button"
                     aria-label="1"
+                    color="default"
                 />
                 <Radio
                     checked={this.state.selectedValue === '2'}
@@ -42,6 +42,7 @@ class RadioRating extends Component {
                     value="2"
                     name="radio-button"
                     aria-label="2"
+                    color="default"
                 />
                 <Radio
                     checked={this.state.selectedValue === '3'}
@@ -49,10 +50,7 @@ class RadioRating extends Component {
                     value="3"
                     name="radio-button"
                     aria-label="3"
-                    classes={{
-                        root: classes.root,
-                        checked: classes.checked,
-                    }}
+                    color="default"
                 />
                 <Radio
                     checked={this.state.selectedValue === '4'}
