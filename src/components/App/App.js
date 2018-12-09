@@ -47,7 +47,6 @@ class App extends Component {
           <Route path="/p2" render={(props)=><RatingCard {...props} text={formText.p2}/>} />
           <Route path="/p3" render={(props) => <RatingCard {...props} text={formText.p3} />} />
           <Route path="/comment" component={CommentCard} />
-          {/* <CommentCard /> */}
           <SummarySubmit />
         </div>
       </Router>

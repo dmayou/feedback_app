@@ -30,22 +30,22 @@ class RatingCard extends Component {
         comment: ''
     }
     handleChange = event => {
-        this.setState({comment: event.target.value});
+        this.setState({ comment: event.target.value });
     };
     handleClick = () => {
-        if (this.state.comment !== '') {
-            this.props.dispatch({
-                type: 'NEW_INPUT',
-                payload: {
-                    key: 'comments',
-                    value: this.state.comment
-                }
-            });
-        }
-        // this.props.dispatch({ type: 'COMMENT_CHANGE', payload: this.state.comment });
-        this.setState( { comment: ''});
-        this.props.dispatch({type: 'NEXT_PAGE'});
+        this.props.dispatch({
+            type: 'NEW_INPUT',
+            payload: {
+                key: 'comments',
+                value: this.state.comment
+            }
+        });
+        this.setState({ comment: '' });
+        this.props.dispatch({ type: 'NEXT_PAGE' });
         this.props.history.push('/'); // back to first page
+    }
+    componentDidMount() {
+        this.setState({ comment: this.props.store.feedbackSubmission.comments });
     }
     render() {
         return (
@@ -89,4 +89,8 @@ RatingCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect()(withStyles(styles)(RatingCard));
+const mapPropsToState = (store) => {
+    return {store};
+}
+
+export default connect(mapPropsToState)(withStyles(styles)(RatingCard));

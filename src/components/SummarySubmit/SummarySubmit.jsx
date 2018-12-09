@@ -31,6 +31,9 @@ class SummarySubmit extends Component {
         console.log('all inputs entered', this.allInputsEntered());
         return(
             <div>
+                {this.allInputsEntered() && <h5 className="Notification"
+                    >You've answered all the questions! Click Submit to save.
+                </h5>}
                 <Button
                     variant='outlined'
                     onClick={this.handleClick}
