@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Flag, Delete } from '@material-ui/icons';
 import Axios from 'axios';
 
 class AdminView extends Component {
@@ -14,9 +15,28 @@ class AdminView extends Component {
         );
     }
     render() {
+        const rows = this.props.store.feedbackList.map( (fb, i) => {
+            return (
+                <tr key={i}>
+                    <td><input type="checkbox" /></td>
+                    <td>{fb.feeling}</td>
+                    <td>{fb.understanding}</td>
+                    <td>{fb.support}</td>
+                    <td>{fb.comments}</td>
+                    <td><Delete /></td>
+                </tr>
+            );
+        })
         return (
             <div>
-                <p>{JSON.stringify(this.props.store.feedbackList)}</p>
+                <table className="table table-striped">
+                    <thead>
+                        <tr><td><Flag /></td><td>Feelings</td><td>Understanding</td><td>Support</td><td>Comments</td><td>Delete</td></tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+                </table>
             </div>
         );
     }
