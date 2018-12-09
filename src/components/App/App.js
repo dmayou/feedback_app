@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
+import Header from '../Header/Header';
 import Progress from '../Progress/Progress';
 import RatingCard from '../RatingCard/RatingCard';
 import CommentCard from '../CommentCard/CommentCard';
@@ -39,10 +40,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" render={() => <Redirect to="/form" />} />
-          <header className="App-header">
-            <h1 className="App-title">Feedback!</h1>
-            <h4><i>Don't forget it!</i></h4>
-          </header>
+          <Route path="/" component={Header} />
           <br/>
           <Route path="/form" render={(props)=><Progress {...props} step={this.props.store.currentPage}/>} />
           <Route path="/form" exact render={(props)=><RatingCard {...props} text={formText.p1}/>} />

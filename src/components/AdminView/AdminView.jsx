@@ -16,7 +16,6 @@ class AdminView extends Component {
     render() {
         return (
             <div>
-                <p>welcome to admin view</p>
                 <p>{JSON.stringify(this.props.store.feedbackList)}</p>
             </div>
         );
