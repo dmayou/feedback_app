@@ -45,7 +45,18 @@ app.put('/fb/flag/:id', (req, res) => {
             res.sendStatus(500);
         })
 });
-
+app.delete('/fb/:id', (req, res) => {
+    const id = req.params.id;
+    const query = 'DELETE FROM "feedback" WHERE "id" = $1';
+    pool.query(query, [id])
+        .then((results) => {
+            console.log('DELETE success');
+            res.sendStatus(200);
+        }).catch((err) => {
+            console.log('DELETE error:', err);
+            res.sendStatus(500);
+        })
+});
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {
     console.log('Listening on port: ', PORT);
