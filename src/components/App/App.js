@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import Progress from '../Progress/Progress';
 import RatingCard from '../RatingCard/RatingCard';
 import CommentCard from '../CommentCard/CommentCard';
 import SummarySubmit from '../SummarySubmit/SummarySubmit';
+import AdminView from '../AdminView/AdminView';
 
 import 'typeface-roboto';
 import './App.css';
@@ -16,38 +17,40 @@ class App extends Component {
         question: 'How are you feeling today?',
         lowRange: 'I\'m very stressed.',
         highRange: 'I\'m feeling great!',
-        nextPage: '/p2',
+        nextPage: '/form/p2',
         dataKey: 'feeling'
       },
       p2: {
         question: 'How well do you understand today\'s material?',
         lowRange: 'I\'m totally lost.',
         highRange: 'I\'ve got this!',
-        nextPage: '/p3',
+        nextPage: '/form/p3',
         dataKey: 'understanding'
       },
       p3: {
         question: 'Did you feel supported by Prime staff today?',
         lowRange: 'I feel abandoned.',
         highRange: 'I feel supported!',
-        nextPage: '/comment',
+        nextPage: '/form/comment',
         dataKey: 'support'
       }
     }
     return (
       <Router>
         <div className="App">
+          <Route exact path="/" render={() => <Redirect to="/form" />} />
           <header className="App-header">
             <h1 className="App-title">Feedback!</h1>
             <h4><i>Don't forget it!</i></h4>
           </header>
           <br/>
-          <Progress step={this.props.store.currentPage}/>
-          <Route path="/" exact render={(props)=><RatingCard {...props} text={formText.p1}/>} />
-          <Route path="/p2" render={(props)=><RatingCard {...props} text={formText.p2}/>} />
-          <Route path="/p3" render={(props) => <RatingCard {...props} text={formText.p3} />} />
-          <Route path="/comment" component={CommentCard} />
-          <SummarySubmit />
+          <Route path="/form" render={(props)=><Progress {...props} step={this.props.store.currentPage}/>} />
+          <Route path="/form" exact render={(props)=><RatingCard {...props} text={formText.p1}/>} />
+          <Route path="/form/p2" render={(props)=><RatingCard {...props} text={formText.p2}/>} />
+          <Route path="/form/p3" render={(props) => <RatingCard {...props} text={formText.p3} />} />
+          <Route path="/form/comment" component={CommentCard} />
+          <Route path="/admin" component={AdminView} />
+          <Route path="/form" component={SummarySubmit} />
         </div>
       </Router>
     );
